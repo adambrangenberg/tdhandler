@@ -119,3 +119,7 @@ dist
 # IntelliJ
 .idea/
 tdhandler.iml
+
+# Non Template
+test/
+package-lock.json

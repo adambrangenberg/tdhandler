@@ -2,11 +2,16 @@
   "name": "tdhandler",
   "version": "1.0.0",
   "description": "Some really advanced handler for the discord API using discord.js",
-  "main": "index.js",
+  "main": "test/test.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test/test.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "LGPL-3.0",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^15.0.0",
+    "table": "^6.8.0"
+  }
 }
