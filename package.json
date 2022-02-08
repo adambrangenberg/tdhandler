@@ -6,9 +6,13 @@
   "scripts": {
     "test": "node test/test.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "LGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TigerbyteDev/tdhandler/"
+  },
+  "keywords": ["Commandhandler", "Eventhandler", "Discord", "Discord.js"],
+  "author": "TigerbyteDev",
+  "license": "LGPL-2.1",
   "dependencies": {
     "discord.js": "^13.6.0",
     "dotenv": "^15.0.0",

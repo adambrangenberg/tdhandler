@@ -121,5 +121,4 @@ dist
 tdhandler.iml
 
 # Non Template
-test/
 package-lock.json
