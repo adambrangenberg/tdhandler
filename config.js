@@ -1,7 +1,7 @@
 const { getBorderCharacters } = require("table");
 
 module.exports = {
-    tableconfig: {
+    tableConfig: {
         border: getBorderCharacters("ramac"),
-    }
+    },
 }
