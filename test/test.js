@@ -1,8 +1,5 @@
-// const path = require('path');
-// console.log(typeof __dirname);
-
 const { Client } = require('discord.js');
-const TDInstance = require('../index.js');
+const { TDInstance } = require('../index.js');
 require('dotenv').config();
 
 const client = new Client({
@@ -24,17 +21,20 @@ const tdhandler = new TDInstance({
         buttonsID: 935914636899938354,
         selectorsID: 935914636899938354,
         contextID: 935914636899938354,
+        otherID: 935914636899938354,
     },
     embeds: {
         warningEmbed: {
             color: "RED",
             title: "warning",
             footer: "warn",
+            footerIcon: "https://i.imgur.com/Z2xrQYh.png",
             timestamp: false,
         },
         defaultEmbed: {
             color: "BLUE",
             footer: "default",
+            footerIcon: "https://cdn.discordapp.com/embed/avatars/0.png",
             timestamp: false,
         },
         loggingEmbed: {
@@ -49,11 +49,15 @@ const tdhandler = new TDInstance({
             position: "owner",
         },
     ],
+    testing: {
+        botID: "803017957528698913",
+        guildID: "751938789412175974"
+    }
 });
 
 client.login(process.env.TOKEN).then();
 
 client.on('ready', () => {
     console.log('Ready!');
-    tdhandler.init(client).then(() => console.log('TDHandler ready!'));
+    tdhandler.init(client, tdhandler).then(() => console.log('TDHandler ready!'));
 });
