@@ -4,10 +4,10 @@ module.exports = {
     options: null,
     development: false,
     ownerOnly: false,
-    colldown: 10,
+    cooldown: 10,
     permissions: null,
 
-    run: async(interaction, client, user, member) => {
+    run: async(interaction, client, tdhandler, user, member) => {
            interaction.reply("hi");
     }
 }

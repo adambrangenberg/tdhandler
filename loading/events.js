@@ -25,6 +25,12 @@ module.exports = async (base, dir, client, own) => {
         let status = "Loaded";
         let type = "None";
 
+        // ignore non events
+        if (own && !event.event) {
+            console.log(`${file} ignored`);
+            continue;
+        }
+
         switch (event.once) {
             case true:
                 type = "Once"

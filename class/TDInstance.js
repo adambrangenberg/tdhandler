@@ -19,7 +19,7 @@ module.exports.TDInstance = class TDInstance {
      * @param {Number} options.logging.buttonsID - the ID of the channel to log buttons in
      * @param {Number} options.logging.selectorsID - the ID of the channel to log selectors in
      * @param {Number} options.logging.contextID - the ID of the channel to log contexts in
-     * @param {Number} options.logging.othersID - the IDD of the channel to log other things in
+     * @param {Number} options.logging.othersID - the ID of the channel to log other things in
      *
      * @param {Object} options.embeds - the embeds configuration
      * @param {Object} options.embeds.warningEmbed - the embeds for warnings
@@ -47,7 +47,7 @@ module.exports.TDInstance = class TDInstance {
      * @param {String} options.testing.guildID - the ID of the test-guild
      */
     constructor(options) {
-        this.options = options;
+        // this.options = options;
 
         const handling = options.handling;
         this.baseDir = handling.baseDir;
@@ -58,12 +58,6 @@ module.exports.TDInstance = class TDInstance {
         this.contextDir = handling.contextDir;
 
         this.logging = options.logging;
-        this.eventsID = this.logging.eventsID;
-        this.commandsID = this.logging.commandsID;
-        this.buttonsID = this.logging.buttonsID;
-        this.selectorsID = this.logging.selectorsID;
-        this.contextID = this.logging.contextID;
-        this.othersID = this.logging.othersID;
 
         const embeds = options.embeds;
         this.warningEmbed = embeds.warningEmbed;
@@ -152,33 +146,32 @@ module.exports.TDInstance = class TDInstance {
         }
 
         const embed = new MessageEmbed();
-        const embeds = this.options.embeds;
 
         switch(type) {
             case "warning":
-                embed.setColor(embeds.warningEmbed.color);
-                embed.setTitle(embeds.warningEmbed.title);
+                embed.setColor(this.warningEmbed.color);
+                embed.setTitle(this.warningEmbed.title);
                 embed.setFooter({
-                    text: embeds.warningEmbed.footer,
-                    iconURL: embeds.warningEmbed.footerIcon
+                    text: this.warningEmbed.footer,
+                    iconURL: this.warningEmbed.footerIcon
                 });
-                if (embeds.warningEmbed.timestamp) {
+                if (this.warningEmbed.timestamp) {
                     embed.setTimestamp();
                 }
                 break;
             case "logging":
-                embed.setColor(embeds.loggingEmbed.color);
-                if (embeds.loggingEmbed.timestamp) {
+                embed.setColor(this.loggingEmbed.color);
+                if (this.loggingEmbed.timestamp) {
                     embed.setTimestamp();
                 }
                 break;
             default:
-                embed.setColor(embeds.defaultEmbed.color);
+                embed.setColor(this.defaultEmbed.color);
                 embed.setFooter({
-                    text: embeds.defaultEmbed.footer,
-                    iconURL: embeds.defaultEmbed.footerIcon
+                    text: this.defaultEmbed.footer,
+                    iconURL: this.defaultEmbed.footerIcon
                 });
-                if (embeds.defaultEmbed.timestamp) {
+                if (this.defaultEmbed.timestamp) {
                     embed.setTimestamp();
                 }
                 break;

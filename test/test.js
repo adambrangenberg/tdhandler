@@ -45,7 +45,7 @@ const tdhandler = new TDInstance({
     team: [
         {
             tag: "Adam ^^#7729",
-            id: 412021620572422155,
+            id: "412021620572422155",
             position: "owner",
         },
     ],
