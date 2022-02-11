@@ -8,6 +8,7 @@ module.exports = {
     /**
      * @param {CommandInteraction} interaction
      * @param {Client} client
+     * @retrun {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
         interaction.channel.send("hi slashcommand");
@@ -86,6 +87,6 @@ module.exports = {
 
         timestamps.set(interaction.user.id, now);
         setTimeout(() => timestamps.delete(interaction.user.id), cooldownAmount);
-
+        return true;
     }
 }

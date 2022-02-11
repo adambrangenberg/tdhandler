@@ -14,12 +14,12 @@ module.exports.TDInstance = class TDInstance {
      * @param {String} options.handling.contextDir - the contexts directory
      *
      * @param {Object} options.logging - the IDs of the channels to log in
-     * @param {Number} options.logging.eventsID - the ID of the channel to log events in
-     * @param {Number} options.logging.commandsID - the ID of the channel to log commands in
-     * @param {Number} options.logging.buttonsID - the ID of the channel to log buttons in
-     * @param {Number} options.logging.selectorsID - the ID of the channel to log selectors in
-     * @param {Number} options.logging.contextID - the ID of the channel to log contexts in
-     * @param {Number} options.logging.othersID - the ID of the channel to log other things in
+     * @param {String} options.logging.eventsID - the ID of the channel to log events in
+     * @param {String} options.logging.commandsID - the ID of the channel to log commands in
+     * @param {String} options.logging.buttonsID - the ID of the channel to log buttons in
+     * @param {String} options.logging.selectorsID - the ID of the channel to log selectors in
+     * @param {String} options.logging.contextID - the ID of the channel to log contexts in
+     * @param {String} options.logging.othersID - the ID of the channel to log other things in
      *
      * @param {Object} options.embeds - the embeds configuration
      * @param {Object} options.embeds.warningEmbed - the embeds for warnings
@@ -76,7 +76,6 @@ module.exports.TDInstance = class TDInstance {
      @param {Client} client - the Discord Client
      */
     async init(client) {
-        console.log(this)
         this.client = client;
         this.client.commands = new Collection();
         this.client.logging = new Collection();
@@ -85,6 +84,8 @@ module.exports.TDInstance = class TDInstance {
         for (const id in this.logging) {
             this.client.logging.set(id.replace("ID", ""), this.logging[id]);
         }
+
+        console.log(typeof this.client.logging.get("commands"));
 
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
@@ -121,12 +122,17 @@ module.exports.TDInstance = class TDInstance {
     };
 
     /**
-     * @param {MessageEmbed} embed
+     * @param {String} text
      * @param {String} type
+     * @param {String} channel
      */
-    async log(embed, type) {
-        const channel = await this.getChannel(this.client.logging.get(type));
-        channel.send(embed);
+    async log(text, type, channel) {
+        channel = await this.getChannel(this.client.logging.get(channel));
+        const embed = this.createEmbed("log");
+        embed.setDescription(text);
+        channel.send({
+            embeds: [embed]
+        });
     };
 
     // @TODO Create a class for the embeds
@@ -161,6 +167,7 @@ module.exports.TDInstance = class TDInstance {
                 break;
             case "logging":
                 embed.setColor(this.loggingEmbed.color);
+                embed.setTitle("New Log!");
                 if (this.loggingEmbed.timestamp) {
                     embed.setTimestamp();
                 }

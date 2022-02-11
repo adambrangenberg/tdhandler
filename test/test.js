@@ -16,12 +16,12 @@ const tdhandler = new TDInstance({
         contextDir: "./context",
     },
     logging: {
-        eventsID: 935914636899938354,
-        commandsID: 935914636899938354,
-        buttonsID: 935914636899938354,
-        selectorsID: 935914636899938354,
-        contextID: 935914636899938354,
-        otherID: 935914636899938354,
+        eventsID: "935914636899938354",
+        commandsID: "935914636899938354",
+        buttonsID: "935914636899938354",
+        selectorsID: "935914636899938354",
+        contextID: "935914636899938354",
+        otherID: "935914636899938354",
     },
     embeds: {
         warningEmbed: {

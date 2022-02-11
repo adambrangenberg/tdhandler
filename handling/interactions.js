@@ -6,9 +6,16 @@ module.exports = {
     event: true,
 
     run: async function (interaction) {
+        const tdhandler = interaction.client.tdhandler
+
         if (interaction.isCommand()) {
-            await slashCommands.run(interaction, interaction.client);
-            console.log("slash");
+            const success = await slashCommands.run(interaction, interaction.client);
+            if (success)
+                tdhandler.log(
+                    `${interaction.user.username} executed ${interaction.commandName} in ${interaction.guild.name}.`,
+                    "log",
+                    "commands"
+                );
         }
     }
 }
