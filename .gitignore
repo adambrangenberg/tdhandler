@@ -122,3 +122,4 @@ tdhandler.iml
 
 # Non Template
 package-lock.json
+test/
