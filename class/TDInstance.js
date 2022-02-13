@@ -69,6 +69,8 @@ module.exports.TDInstance = class TDInstance {
         const testing = options.testing;
         this.testBotID = testing.botID;
         this.testGuildID = testing.guildID;
+
+        global.tdhandler = this;
     }
 
     /**
@@ -79,7 +81,6 @@ module.exports.TDInstance = class TDInstance {
         this.client = client;
         this.client.commands = new Collection();
         this.client.logging = new Collection();
-        this.client.tdhandler = this;
 
         for (const id in this.logging) {
             this.client.logging.set(id.replace("ID", ""), this.logging[id]);

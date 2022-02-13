@@ -8,17 +8,17 @@ module.exports = {
     /**
      * @param {CommandInteraction} interaction
      * @param {Client} client
-     * @retrun {Boolean} success - If the command was executed successfully
+     * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
-        interaction.channel.send("hi slashcommand");
+        // interaction.channel.send("hi slashcommand");
         const command = client.commands.get(interaction.commandName);
         if (!command) return false;
 
         if (command.development) {
             let run = false;
-            for (const person of client.tdhandler.team) {
-                if (person.id === interaction.author.id) {
+            for (const person of tdhandler.team) {
+                if (person.id == interaction.user.id) {
                     run = true
                 }
             }
@@ -80,9 +80,9 @@ module.exports = {
         }
 
         try {
-            command.run(interaction, client, client.tdhandler, interaction.user, interaction.member);
+            command.run(interaction, client, tdhandler, interaction.user, interaction.member);
         } catch (error) {
-            client.tdhandler.log(error, "error");
+            await tdhandler.log(error, "error", "other");
         }
 
         timestamps.set(interaction.user.id, now);
