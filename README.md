@@ -1,1 +1,11 @@
-uwu
+### TO-DO List
+- [x] Event handling
+- [x] Command handling
+- [ ] Button handling
+- [ ] Menu handling
+- [ ] Contextmenu handling
+- [x] Method for embeds
+- [ ] Constructor for preset embeds
+- [ ] Proper documentation
+- [x] update JSDoc
+- [ ] add TS-Doc
