@@ -80,13 +80,14 @@ module.exports.TDInstance = class TDInstance {
     async init(client) {
         this.client = client;
         this.client.commands = new Collection();
+        this.client.buttons = new Collection();
         this.client.logging = new Collection();
+
+        this.buttons = new Collection();
 
         for (const id in this.logging) {
             this.client.logging.set(id.replace("ID", ""), this.logging[id]);
         }
-
-        console.log(typeof this.client.logging.get("commands"));
 
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
@@ -94,7 +95,7 @@ module.exports.TDInstance = class TDInstance {
         // Loading users files
         await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
         await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
-        // await loadButtons();
+        await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
         // await loadSelectors();
         // await loadContexts();
 

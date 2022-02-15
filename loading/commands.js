@@ -27,17 +27,19 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
         for (const file of files) {
             let status = "Unloaded";
             const command = require(join(base, dir, folder, file));
-            if (command.name) {
+            if (command.name && command.description) {
                 if (command.development && testBotID === client.id) continue;
-                client.commands.set(command.name, command);
+                if (command.name) {
+                    client.commands.set(command.name, command);
 
-                commands.push({
-                    name: command.name,
-                    description: command.description,
-                    options: command.options,
-                });
+                    commands.push({
+                        name: command.name,
+                        description: command.description,
+                        options: command.options,
+                    });
 
-                status = "Loaded";
+                    status = "Loaded";
+                }
             }
             data.push([file, status, folder]);
         }

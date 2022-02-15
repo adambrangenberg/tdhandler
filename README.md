@@ -3,7 +3,7 @@
 |:------:|:-----------------------------:|
 |   ✅    |       Command handling        |
 |   ✅    |        Event handling         |
-|   ⬜    |        Button handling        |
+|   ✅    |        Button handling        |
 |   ⬜    |         Menu handling         |
 |   ⬜    |     Contextmenu handling      |
 |   ✅    |       Method for embeds       |

@@ -22,7 +22,7 @@ module.exports = async (base, dir, client, own) => {
     const files = readdirSync(join(base, dir)).filter(file => file.endsWith(".js"));
     for (const file of files) {
         const event = require(join(base, dir, file));
-        let status = "Loaded";
+        let status = "Unloaded";
         let type = "None";
 
         // ignore non events
@@ -30,19 +30,21 @@ module.exports = async (base, dir, client, own) => {
             console.log(`${file} ignored`);
             continue;
         }
-
-        switch (event.once) {
-            case true:
-                type = "Once"
-                client.once(event.name, event.run);
-                break;
-            case false:
-                type = "On"
-                client.on(event.name, event.run);
-                break;
-            default:
-                status = "Deactivated";
-                break;
+        if (event.name) {
+            switch (event.once) {
+                case true:
+                    type = "Once"
+                    status = "Loaded"
+                    client.once(event.name, event.run);
+                    break;
+                case false:
+                    type = "On"
+                    status = "Loaded"
+                    client.on(event.name, event.run);
+                    break;
+                default:
+                    break;
+            }
         }
         data.push([file, type, status])
     }
