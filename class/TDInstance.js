@@ -80,6 +80,7 @@ module.exports.TDInstance = class TDInstance {
     async init(client) {
         this.client = client;
         this.client.commands = new Collection();
+        this.client.menus = new Collection();
         this.client.buttons = new Collection();
         this.client.logging = new Collection();
 
@@ -96,6 +97,7 @@ module.exports.TDInstance = class TDInstance {
         await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
         await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
         await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
+        await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.testBotID, this.testGuildID);
         // await loadSelectors();
         // await loadContexts();
 

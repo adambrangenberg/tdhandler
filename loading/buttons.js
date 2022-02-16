@@ -13,6 +13,7 @@ const { MessageButton } = require("discord.js");
  * @param {TDInstance} tdhandler
  */
 module.exports = async (base, dir, client, tdhandler) => {
+    console.log("Loading buttons...")
     const data = [
         ["Button", "Status"]
     ];
@@ -22,15 +23,14 @@ module.exports = async (base, dir, client, tdhandler) => {
         const button = require(join(base, dir, file));
         let status = "Unloaded";
 
-        if (button.name && button.button) {
+        if (button.button) {
             const buttonObject = new MessageButton(button.button)
 
-            client.buttons.set(button.name, button);
-            tdhandler.buttons.set(button.name, buttonObject)
+            client.buttons.set(button.button.customId, button);
+            tdhandler.buttons.set(button.button.customId, buttonObject)
             status = "Loaded"
         }
 
-        console.log(file)
         data.push([file, status])
     }
 

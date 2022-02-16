@@ -11,7 +11,6 @@ module.exports = {
      * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
-        // interaction.channel.send("hi slashcommand");
         const command = client.commands.get(interaction.commandName);
         if (!command) return false;
 

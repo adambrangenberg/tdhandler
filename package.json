@@ -10,7 +10,12 @@
     "type": "git",
     "url": "https://github.com/TigerbyteDev/tdhandler/"
   },
-  "keywords": ["Commandhandler", "Eventhandler", "Discord", "Discord.js"],
+  "keywords": [
+    "Commandhandler",
+    "Eventhandler",
+    "Discord",
+    "Discord.js"
+  ],
   "author": "TigerbyteDev",
   "license": "LGPL-2.1",
   "dependencies": {

@@ -7,7 +7,7 @@ module.exports = {
     event: true,
 
     run: async function (interaction) {
-        if (interaction.isCommand()) {
+        if (interaction.isApplicationCommand()) {
             const success = slashCommands.run(interaction, interaction.client);
             if (success)
                 await tdhandler.log(

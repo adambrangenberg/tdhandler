@@ -27,7 +27,6 @@ module.exports = async (base, dir, client, own) => {
 
         // ignore non events
         if (own && !event.event) {
-            console.log(`${file} ignored`);
             continue;
         }
         if (event.name) {
