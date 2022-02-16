@@ -5,7 +5,7 @@
 |   ✅    |        Event handling         |
 |   ✅    |        Button handling        |
 |   ⬜    |         Menu handling         |
-|   ⬜    |     Contextmenu handling      |
+|   ✅    |     Contextmenu handling      |
 |   ✅    |       Method for embeds       |
 |   ⬜    | Constructor for preset embeds |
 |   ⬜    |     Proper documentation      |
