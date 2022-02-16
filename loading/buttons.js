@@ -2,6 +2,8 @@ const { readdirSync } = require("fs");
 const { join } = require("path");
 const { table } = require("table")
 const { tableConfig } = require("../config");
+const { MessageButton } = require("discord.js");
+
 
 /**
  * @async
@@ -21,8 +23,10 @@ module.exports = async (base, dir, client, tdhandler) => {
         let status = "Unloaded";
 
         if (button.name && button.button) {
+            const buttonObject = new MessageButton(button.button)
+
             client.buttons.set(button.name, button);
-            tdhandler.buttons.set(button.name, button.button)
+            tdhandler.buttons.set(button.name, buttonObject)
             status = "Loaded"
         }
 
