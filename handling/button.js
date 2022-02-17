@@ -8,7 +8,6 @@ module.exports = {
      * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
-        // interaction.channel.send("hi slashcommand");
         const button = client.buttons.get(interaction.customId);
         if (!button) return false;
 
