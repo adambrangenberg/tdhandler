@@ -3,14 +3,14 @@ const { MessageEmbed } = require("discord.js");
 module.exports = class warningEmbed extends MessageEmbed {
     constructor() {
         super()
-        super.setColor(this.warningEmbed.color);
-        super.setTitle(this.warningEmbed.title);
+        super.setColor(tdhandler.warningEmbed.color);
+        super.setTitle(tdhandler.warningEmbed.title);
         super.setFooter({
-            text: this.warningEmbed.footer,
-            iconURL: this.warningEmbed.footerIcon
+            text: tdhandler.warningEmbed.footer,
+            iconURL: tdhandler.warningEmbed.footerIcon
         });
 
-        if (this.warningEmbed.timestamp) {
+        if (tdhandler.warningEmbed.timestamp) {
             super.setTimestamp();
         }
     }

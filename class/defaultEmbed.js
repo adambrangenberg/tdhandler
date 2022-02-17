@@ -3,12 +3,12 @@ const { MessageEmbed } = require("discord.js");
 module.exports = class defaultEmbed extends MessageEmbed {
     constructor() {
         super()
-        super.setColor(this.defaultEmbed.color);
+        super.setColor(tdhandler.defaultEmbed.color);
         super.setFooter({
-            text: this.defaultEmbed.footer,
-            iconURL: this.defaultEmbed.footerIcon
+            text: tdhandler.defaultEmbed.footer,
+            iconURL: tdhandler.defaultEmbed.footerIcon
         });
-        if (this.defaultEmbed.timestamp) {
+        if (tdhandler.defaultEmbed.timestamp) {
             super.setTimestamp();
         }
     }
