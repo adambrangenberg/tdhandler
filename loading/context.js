@@ -45,14 +45,19 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
     }
 
     if (testBotID === client.id) {
-        await client.application.commands.set(menus, testGuildID);
-        console.log("Registered commands in the test guild")
+        for (const menu of menus) {
+            await client.application.commands.create(menu, testGuildID);
+        }
+        console.log("Registered context menus in the test guild")
     } else {
         client.guilds.cache.each(async (guild) => {
-            await client.application.commands.set(menus, guild.id);
+            for (const menu of menus) {
+                await client.application.commands.create(menu, guild.id);
+            }
         });
-        console.log("Registered commands in all guilds")
+        console.log("Registered context menus in all guilds")
     }
+
 
     console.log(`${table(data, tableConfig)}\n`);
 }

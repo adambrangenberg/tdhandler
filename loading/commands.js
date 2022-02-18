@@ -46,11 +46,15 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
     }
 
     if (testBotID === client.id) {
-        await client.application.commands.set(commands, testGuildID);
+        for (const command of commands) {
+            await client.application.commands.create(command, testGuildID);
+        }
         console.log("Registered commands in the test guild")
     } else {
         client.guilds.cache.each(async (guild) => {
-            await client.application.commands.set(commands, guild.id);
+             for (const command of commands) {
+                await client.application.commands.create(command, guild.id);
+            }
         });
         console.log("Registered commands in all guilds")
     }

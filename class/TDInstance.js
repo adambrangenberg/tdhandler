@@ -1,7 +1,7 @@
 const { Collection, MessageEmbed } = require("discord.js");
 
 /** Create a new TDInstance. */
-module.exports.TDInstance = class TDInstance {
+module.exports = class TDInstance {
     // @TODO: Import logging as a string
     /**
      * @param {{logging: {eventsID: number, selectorsID: number, contextID: number, buttonsID: number, commandsID: number}, handling: {buttonsDir: string, commandsDir: string, eventsDir: string, selectorsDir: string, contextDir: string}, team: [{tag: string, id: number, position: string}], embeds: {loggingEmbed: {color: string, timestamp: boolean}, defaultEmbed: {color: string, footer: string, timestamp: boolean}, warningEmbed: {color: string, footer: string, title: string, timestamp: boolean}}}} options - the options to create a new instance
@@ -89,7 +89,15 @@ module.exports.TDInstance = class TDInstance {
         for (const id in this.logging) {
             this.client.logging.set(id.replace("ID", ""), this.logging[id]);
         }
-
+/*
+        if (this.testBotID === client.id) {
+            await client.application.commands.set([], this.testGuildID);
+        } else {
+            client.guilds.cache.each(async (guild) => {
+                await client.application.commands.set([], guild.id);
+            });
+        }
+*/
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
 
