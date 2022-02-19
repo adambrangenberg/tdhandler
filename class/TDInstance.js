@@ -35,7 +35,7 @@ module.exports = class TDInstance {
      * @param {Boolean} options.embeds.defaultEmbed.timestamp - if there should be a timestamp or not
      * @param {Object} options.embeds.loggingEmbed - the embeds for logs
      * @param {String} options.embeds.loggingEmbed.color - the color of the embed
-     * @param {Boolean} options.embeds.loggingEmbed.footer - if there should be a timestamp or not
+     * @param {Boolean} options.embeds.loggingEmbed.timestamp - if there should be a timestamp or not
      *
      * @param {Array} options.team - the team of the bot
      * @param {Object} options.team[] - the team member
