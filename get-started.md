@@ -2,8 +2,8 @@
 
 ## Requirements
 
-1. At least Node.JS 16
-2. Discord.JS 13
+1. At least Node.JS v.16
+2. Discord.JS v.13
 3. Latest version of TDHandler
 4. A Discord Bot and its Token
 
