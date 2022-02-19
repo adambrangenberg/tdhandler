@@ -10,14 +10,14 @@ module.exports = class TDInstance {
      * @param {String} options.handling.eventsDir - the events directory
      * @param {String} options.handling.commandsDir - the commands directory
      * @param {String} options.handling.buttonsDir - the buttons directory
-     * @param {String} options.handling.selectorsDir - the selectors directory
+     * // @TODO: add @param {String} options.handling.selectorsDir - the selectors directory
      * @param {String} options.handling.contextDir - the contexts directory
      *
      * @param {Object} options.logging - the IDs of the channels to log in
      * @param {String} options.logging.eventsID - the ID of the channel to log events in
      * @param {String} options.logging.commandsID - the ID of the channel to log commands in
      * @param {String} options.logging.buttonsID - the ID of the channel to log buttons in
-     * @param {String} options.logging.selectorsID - the ID of the channel to log selectors in
+     * //@TODO: add @param {String} options.logging.selectorsID - the ID of the channel to log selectors in
      * @param {String} options.logging.contextID - the ID of the channel to log contexts in
      * @param {String} options.logging.othersID - the ID of the channel to log other things in
      *
@@ -54,7 +54,7 @@ module.exports = class TDInstance {
         this.eventsDir = handling.eventsDir;
         this.commandsDir = handling.commandsDir;
         this.buttonsDir = handling.buttonsDir;
-        this.selectorsDir = handling.selectorsDir;
+        // this.selectorsDir = handling.selectorsDir;
         this.contextDir = handling.contextDir;
 
         this.logging = options.logging;
@@ -102,13 +102,14 @@ module.exports = class TDInstance {
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
 
         // Loading users files
-        await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
-        await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
-        await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
-        await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.testBotID, this.testGuildID);
+        if (this.eventsDir) await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
+        if (this.commandsDir) await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
+        if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
+        if (this.contextDir) await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.testBotID, this.testGuildID);
         // await loadSelectors();
         // await loadContexts();
 
+        console.log("TDHandler is ready!");
     }
 
     /**
@@ -130,6 +131,7 @@ module.exports = class TDInstance {
      * @returns {Channel} channel
      */
     getChannel(id) {
+        if (!id) return false;
         return this.client.channels.fetch(id);
     };
 
@@ -140,11 +142,13 @@ module.exports = class TDInstance {
      */
     async log(text, type, channel) {
         channel = await this.getChannel(this.client.logging.get(channel));
+        if (!channel) return false;
         const embed = this.createEmbed("log");
         embed.setDescription(text);
         channel.send({
             embeds: [embed]
         });
+        return true;
     };
 
     // @TODO Create a class for the embeds
