@@ -2,7 +2,7 @@
   "name": "tdhandler",
   "version": "1.0.7",
   "description": "Some really advanced handler for the discord API using discord.js",
-  "main": "test/test.js",
+  "main": "index.js",
   "scripts": {
     "test": "node test/test.js"
   },
@@ -25,7 +25,9 @@
   "license": "LGPL-2.1",
   "dependencies": {
     "discord.js": "^13.6.0",
-    "dotenv": "^15.0.0",
     "table": "^6.8.0"
+  },
+  "devDependencies": {
+    "dotenv": "^15.0.0"
   }
 }
