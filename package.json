@@ -1,6 +1,6 @@
 {
   "name": "tdhandler",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Some really advanced handler for the discord API using discord.js",
   "main": "index.js",
   "scripts": {
