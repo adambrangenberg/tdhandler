@@ -1,3 +1,12 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
 ### Node template
 # Logs
 logs
@@ -121,5 +130,5 @@ dist
 tdhandler.iml
 
 # Non Template
-package-lock.json
 test/
+package-lock.json
