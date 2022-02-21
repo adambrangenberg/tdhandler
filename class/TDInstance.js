@@ -113,13 +113,6 @@ module.exports = class TDInstance {
     }
 
     /**
-     @return {Object} options - the instance options
-     */
-    getOptions() {
-        return this.options;
-    }
-
-    /**
      @return {Client} client - the instance client
      */
     getClient() {

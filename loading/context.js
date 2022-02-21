@@ -58,6 +58,5 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
         console.log("Registered context menus in all guilds")
     }
 
-
     console.log(`${table(data, tableConfig)}\n`);
 }
