@@ -132,10 +132,10 @@ module.exports = class TDInstance {
      * @param {String} text
      * @param {String} channel
      */
-    async log(text, type, channel) {
+    async log(text, channel) {
         const foundChannel = await this.getChannel(this.client.logging.get(channel));
         if (!foundChannel || !(foundChannel.isThread() || foundChannel.isText())) return false;
-        const embed = this.createEmbed(type);
+        const embed = this.createEmbed("log");
         embed.setDescription(String(text));
         foundChannel?.send({
             embeds: [embed]

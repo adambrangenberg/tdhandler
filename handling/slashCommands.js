@@ -88,7 +88,7 @@ module.exports = {
             command.run(interaction, client, tdhandler, interaction.user, interaction.member);
         } catch (error) {
             console.error(error)
-            await tdhandler.log(error, "log", "others");
+            await tdhandler.log(error, "others");
         }
 
         timestamps.set(interaction.user.id, now);

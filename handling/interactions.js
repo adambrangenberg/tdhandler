@@ -9,12 +9,20 @@ module.exports = {
     run: async function (interaction) {
         if (interaction.isApplicationCommand()) {
             const success = slashCommands.run(interaction, interaction.client);
-            if (success)
+            if (success) {
+                let type;
+
+                if (interaction.isContextMenu()) {
+                    type = "context";
+                } else {
+                    type = "commands";
+                }
+
                 await tdhandler.log(
                     `${interaction.user.username} executed ${interaction.commandName} in ${interaction.guild.name}.`,
-                    "log",
-                    "commands"
+                    type
                 );
+            }
 
             return true;
         }
@@ -24,7 +32,6 @@ module.exports = {
             if (success)
                 await tdhandler.log(
                     `${interaction.user.username} pressed ${interaction.customId} in ${interaction.guild.name}.`,
-                    "log",
                     "buttons"
                 );
 
