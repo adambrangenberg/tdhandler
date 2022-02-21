@@ -146,6 +146,7 @@ module.exports = class TDInstance {
     // @TODO Create a class for the embeds
     /**
      * @param {String} type - the type of the embed
+     * @return {MessageEmbed} - the embed
      */
     createEmbed(type) {
         const aliases = {
