@@ -44,7 +44,7 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
         }
     }
 
-    if (testBotID == client.id) {
+    if (testBotID === client.id) {
         for (const menu of menus) {
             await client.application.commands.create(menu, testGuildID);
         }
