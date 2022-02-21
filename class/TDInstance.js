@@ -121,7 +121,7 @@ module.exports = class TDInstance {
 
     /**
      * @param {String} id
-     * @returns {Promise<Channel | Boolean>} channel
+     * @returns {Channel | boolean} channel
      */
     getChannel(id) {
         if (!id) return false;
