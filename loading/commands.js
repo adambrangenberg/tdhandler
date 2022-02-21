@@ -45,7 +45,7 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
         }
     }
 
-    if (testBotID === client.id) {
+    if (testBotID == client.id) {
         for (const command of commands) {
             await client.application.commands.create(command, testGuildID);
         }

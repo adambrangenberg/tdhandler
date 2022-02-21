@@ -89,15 +89,17 @@ module.exports = class TDInstance {
         for (const id in this.logging) {
             this.client.logging.set(id.replace("ID", ""), this.logging[id]);
         }
-/*
-        if (this.testBotID === client.id) {
+
+        // Resetting the command before creating the actual ones
+        if (this.testBotID == client.id) {
             await client.application.commands.set([], this.testGuildID);
         } else {
             client.guilds.cache.each(async (guild) => {
                 await client.application.commands.set([], guild.id);
             });
         }
-*/
+        console.log("Resetted Application Commands, starting loaders! :)")
+
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
 
@@ -106,8 +108,6 @@ module.exports = class TDInstance {
         if (this.commandsDir) await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
         if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
         if (this.contextDir) await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.testBotID, this.testGuildID);
-        // await loadSelectors();
-        // await loadContexts();
 
         console.log("TDHandler is ready!");
     }
@@ -132,20 +132,19 @@ module.exports = class TDInstance {
      */
     getChannel(id) {
         if (!id) return false;
-        return this.client.channels.fetch(id) ?? false;
+        return this.client.channels.fetch(id) || false;
     };
 
     /**
      * @param {String} text
-     * @param {String} type
      * @param {String} channel
      */
     async log(text, type, channel) {
         const foundChannel = await this.getChannel(this.client.logging.get(channel));
-        if (!channel) return false;
-        const embed = this.createEmbed("log");
-        embed.setDescription(text);
-        foundChannel.send({
+        if (!foundChannel || !(foundChannel.isThread() || foundChannel.isText())) return false;
+        const embed = this.createEmbed(type);
+        embed.setDescription(String(text));
+        foundChannel?.send({
             embeds: [embed]
         });
         return true;

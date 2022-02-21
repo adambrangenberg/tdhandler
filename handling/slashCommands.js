@@ -11,7 +11,13 @@ module.exports = {
      * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
-        const command = client.commands.get(interaction.commandName);
+        let command;
+        if (interaction.isContextMenu()) {
+            command = client.menus.get(interaction.commandName);
+        } else {
+            command = client.commands.get(interaction.commandName);
+        }
+
         if (!command) return false;
 
         if (command.development) {
@@ -81,7 +87,8 @@ module.exports = {
         try {
             command.run(interaction, client, tdhandler, interaction.user, interaction.member);
         } catch (error) {
-            await tdhandler.log(error, "error", "other");
+            console.error(error)
+            await tdhandler.log(error, "log", "others");
         }
 
         timestamps.set(interaction.user.id, now);
