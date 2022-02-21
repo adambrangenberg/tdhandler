@@ -128,11 +128,11 @@ module.exports = class TDInstance {
 
     /**
      * @param {String} id
-     * @returns {Channel} channel
+     * @returns {Promise<Channel | Boolean>} channel
      */
     getChannel(id) {
         if (!id) return false;
-        return this.client.channels.fetch(id);
+        return this.client.channels.fetch(id) ?? false;
     };
 
     /**
@@ -141,11 +141,11 @@ module.exports = class TDInstance {
      * @param {String} channel
      */
     async log(text, type, channel) {
-        channel = await this.getChannel(this.client.logging.get(channel));
+        const foundChannel = await this.getChannel(this.client.logging.get(channel));
         if (!channel) return false;
         const embed = this.createEmbed("log");
         embed.setDescription(text);
-        channel.send({
+        foundChannel.send({
             embeds: [embed]
         });
         return true;
