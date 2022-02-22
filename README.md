@@ -57,4 +57,5 @@ If there are any questions left, join our [Discord Server](https://discord.com/i
 ## Special Thanks to…
 
 [Cannon](https://github.com/CannonStealth) :heart:\
-[GitBook](https://www.gitbook.com) :books:
+[GitBook](https://www.gitbook.com) :books:\
+[js.org](https://github.com/js-org/js.org) :spider\_web:
