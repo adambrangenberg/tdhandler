@@ -143,6 +143,14 @@ module.exports = class TDInstance {
         return true;
     };
 
+    /**
+     * @param {String} name
+     * @returns {MessageButton}
+     */
+    getButton(name) {
+        return this.buttons.get(name);
+    }
+
     // @TODO Create a class for the embeds
     /**
      * @param {String} type - the type of the embed
