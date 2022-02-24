@@ -15,3 +15,7 @@
   * [x] JSDoc
   * [ ] TSDoc/Types
 * [ ] Method for Buttons
+* [ ] Collections
+  * [ ] Use Maps instead
+  * [ ] saving them in tdhandler, not client
+  * [ ] make them private variables so they don't disturb
