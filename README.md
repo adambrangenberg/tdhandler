@@ -40,7 +40,7 @@ You can contribute in our [GitHub Repository](https://github.com/TigerbyteDev/td
 
 <summary>Where can I get support?</summary>
 
-You can either open a new [Issue on GitHub](https://github.com/TigerbyteDev/tdhandler/issues) or join our [Discord Server](https://discord.gg/7NdQSUxX)
+You can either open a new [Issue on GitHub](https://github.com/TigerbyteDev/tdhandler/issues) or join our[ Discord Server](https://discord.gg/Hzcwn58pj6)
 
 </details>
 
