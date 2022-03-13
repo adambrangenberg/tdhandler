@@ -91,7 +91,7 @@ module.exports = class TDInstance {
         }
 
         // Resetting the command before creating the actual ones
-        if (this.testBotID === client.id) {
+        if (this.testBotID === client.user.id) {
             await client.application.commands.set([], this.testGuildID);
         } else {
             client.guilds.cache.each(async (guild) => {
