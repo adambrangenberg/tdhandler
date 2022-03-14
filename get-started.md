@@ -13,7 +13,7 @@ To start a new Instance, you need to create a new Object first (the options can 
 
 ```javascript
 // Frist import the class
-const { TDInstance } = require("TDHandler");
+const { TDInstance } = require("tdhandler");
 
 // then call the constructor
 // the options can be found in the description of TDInstance class
