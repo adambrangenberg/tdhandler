@@ -4,6 +4,11 @@ description: The Properties a command-file can have
 
 # ❗ Commands
 
+**File structure:**\
+****Commands Folder\
+\-> Category Folder\
+\-> -> Command File
+
 ```javascript
 module.exports = {
     // The command-name

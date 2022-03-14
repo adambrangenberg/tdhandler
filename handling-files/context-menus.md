@@ -4,7 +4,10 @@ description: The properties a content menu-file can have
 
 # 🧑🦲 Context Menus
 
-
+**File structure:**\
+****Contexts Folder\
+\-> Category Folder\
+\-> -> Context File
 
 ```javascript
 module.exports = {

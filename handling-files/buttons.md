@@ -4,6 +4,11 @@ description: The properties a button-file can have
 
 # 🔘 Buttons
 
+**File structure:**\
+****Buttons Folder\
+\-> Category Folder\
+\-> -> Button File
+
 ```javascript
 module.exports = {
     // The MessageButton Options, customId is going to be its name

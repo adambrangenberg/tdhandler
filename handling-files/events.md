@@ -4,6 +4,10 @@ description: The properties an event-file can have
 
 # ⛺ Events
 
+**File structure:**\
+****Events Folder\
+\-> Event File
+
 ```javascript
 module.exports = {
     // The event-name
