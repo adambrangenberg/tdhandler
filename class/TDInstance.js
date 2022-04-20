@@ -119,7 +119,8 @@ module.exports = class TDInstance {
         } else {
             if (client.guilds.cache.size < 15) {
                 console.log("Registering commands and menus for all guilds... \n They are going to be visible instantly\n");
-                client.guilds.cache.each(async (guild) => {
+                const guilds = await client.guilds.fetch()
+                guilds.each(async (guild) => {
                     await client.application.commands.set(api, guild.id);
                 });
             } else{
