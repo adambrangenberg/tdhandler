@@ -13,7 +13,7 @@ const { tableConfig } = require("../config");
  * @param {String} testGuildID
  */
 module.exports = async (base, dir, client, menusMap, testBotID, testGuildID) => {
-    console.log("Loading Context menus...")
+    console.log("Loading context menus...")
     const data = [
         ["Command", "Status", "Directory"]
     ];
@@ -47,19 +47,21 @@ module.exports = async (base, dir, client, menusMap, testBotID, testGuildID) => 
         }
     }
 
+    console.log(`${table(data, tableConfig)}`);
+    const menuString = menus.length > 1 ? "menus" : "menu";
+    console.log(`Registering ${menus.length} context ${menuString}...`);
+
     if (testBotID === client.user.id) {
         for (const menu of menus) {
             await client.application.commands.create(menu, testGuildID);
         }
-        console.log("Registered context menus in the test guild")
+        console.log("Registered context menus in the test guild\n")
     } else {
         client.guilds.cache.each(async (guild) => {
             for (const menu of menus) {
                 await client.application.commands.create(menu, guild.id);
             }
         });
-        console.log("Registered context menus in all guilds")
+        console.log("Registered context menus in all guilds\n")
     }
-
-    console.log(`${table(data, tableConfig)}\n`);
 }
