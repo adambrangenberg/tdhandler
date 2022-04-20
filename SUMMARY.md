@@ -7,13 +7,14 @@
 
 * [📦 TDInstance](classes/tdinstance.md)
 
-## Functions
+## Methods
 
-* [✅ init](functions/init.md)
-* [🤖 getClient](functions/getclient.md)
-* [🗣 getChannel](functions/getchannel.md)
-* [📑 log](functions/log.md)
-* [📺 createEmbed](functions/createembed.md)
+* [✅ init](methods/init.md)
+* [🤖 getClient](methods/getclient.md)
+* [🗣 getChannel](methods/getchannel.md)
+* [📑 log](methods/log.md)
+* [📺 createEmbed](methods/createembed.md)
+* [🔘 getButton](methods/getbutton.md)
 
 ## Organisation
 

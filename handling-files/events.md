@@ -14,6 +14,8 @@ module.exports = {
     name: "messageCreate",
     // Wherther the event fires once or always
     once: false,
+    // This allows you to ignore the file in the loading process
+    ignoreLoading: false,
     
     // The code to run that event
     run: message => {

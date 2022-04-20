@@ -22,7 +22,9 @@ module.exports = {
     clientPermissions: null,
     // The permissions required by the client to click that button
     userPermissions: null,
-
+    // This allows you to ignore the file in the loading process
+    ignoreLoading: false,
+    
     // The code to run that button
     run: (interaction, client, tdhandler, user, member) => {
         interaction.reply({

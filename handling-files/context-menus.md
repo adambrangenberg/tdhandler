@@ -23,6 +23,8 @@ module.exports = {
     clientPermissions: null,
     // The permissions required by the user to use that menu
     userPermissions: null,
+    // This allows you to ignore the file in the loading process
+    ignoreLoading: false,
     
     // The code to run that menu
     run: (interaction, client, tdhandler, user, member) => {

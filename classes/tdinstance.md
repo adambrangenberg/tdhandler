@@ -73,7 +73,7 @@ new TDInstance({
 
 ## Functions
 
-[getClient](../functions/getclient.md): returns the [Client](https://discord.js.org/#/docs/discord.js/stable/class/Client) of the current Instance\
-[getChannel](../functions/getchannel.md): returns a [Channel](https://discord.js.org/#/docs/discord.js/stable/class/Channel) object\
-[log](../functions/log.md): allows you to log something if the logging channels\
-[createEmbed](../functions/createembed.md): creates a customized [MessageEmbed](https://discord.js.org/#/docs/discord.js/stable/class/MessageEmbed)
+[getClient](../methods/getclient.md): returns the [Client](https://discord.js.org/#/docs/discord.js/stable/class/Client) of the current Instance\
+[getChannel](../methods/getchannel.md): returns a [Channel](https://discord.js.org/#/docs/discord.js/stable/class/Channel) object\
+[log](../methods/log.md): allows you to log something if the logging channels\
+[createEmbed](../methods/createembed.md): creates a customized [MessageEmbed](https://discord.js.org/#/docs/discord.js/stable/class/MessageEmbed)

@@ -2,8 +2,6 @@
 description: >-
   TDHandler is a NPM Package with that you can handle most Discord.JS
   Interactions and Events
-cover: https://img.tigerbyte.repl.co/tdhandler_banner.png
-coverY: -12.846946867565425
 ---
 
 # 👋 TDHandler Guide

@@ -4,7 +4,7 @@ description: How to send a button
 
 # 🔘 Sending Buttons
 
-It is really easy to send a button, basically you just get it from the Collection by its name and send it like in this example:
+It is really easy to send a button, basically you just get it with the [getButton](methods/getbutton.md) method by its name and send it like in this example:
 
 ```javascript
 const { MessageActionRow } = require("discord.js");
@@ -19,7 +19,7 @@ module.exports = {
     userPermissions: null,
 
     run: (interaction, client, tdhandler, user, member) => {
-        const button = tdhandler.buttons.get("help")
+        const button = tdhandler.getButton("help")
         const row = new MessageActionRow().addComponents([button])
 
         interaction.reply({

@@ -25,6 +25,8 @@ module.exports = {
     clientPermissions: ["SEND_MESSAGES", "VIEW_CHANNEL"],
     // The permissions required by the user to perform that command
     userPermissions: ["VIEW_CHANNEL"],
+    // This allows you to ignore the file in the loading process
+    ignoreLoading: false,
     
     // The code to run that command
     run: (interaction, client, tdhandler, user, member) => {
