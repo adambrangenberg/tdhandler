@@ -2,12 +2,12 @@
 
 **20 April 2020:**\
 **\[ORGA]** Changed formatting of the Changelog\
-**\[PACKAGE]** Added ignoreLoading property for Command, Menus, Button and Events\
-**\[DOCS]** Finally documented .getButton() method 😅\
+**\[PACKAGE]** Added ignoreLoading property for [Command](../handling-files/commands.md), [Context Menus](../handling-files/context-menus.md), [Button](../handling-files/buttons.md) and [Events](../handling-files/events.md)\
+**\[DOCS]** Finally documented [.getButton()](../methods/getbutton.md) method 😅\
 **\[DOCS]** Renamed Category functions to [methods](broken-reference)\
-**\[PACKAGE]** Made loading variables private so they do not disturb\
+**\[PACKAGE]** Made loading variables private, so they do not disturb\
 **\[PACKAGE]** Made [.getClient](../methods/getclient.md) method a getter\
-**\[PACKAGE]** Added .loadingVariables method, which is a getter\
+**\[PACKAGE]** Added [.loadingVariables](../methods/loadingvariables.md) method, which is a getter\
 **\[PACKAGE]** Moved loading variables from client to [TDInstance](../classes/tdinstance.md) and made them private\
 **\[PACKAGE]** Using maps instead of collections
 
