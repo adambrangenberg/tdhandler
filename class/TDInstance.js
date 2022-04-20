@@ -110,9 +110,10 @@ module.exports = class TDInstance {
         if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.#buttons);
         if (this.contextDir) context = await require('../loading/context.js')(this.baseDir, this.contextDir, this.#menus, this.testBotID);
 
-        // Registering the commands and menus
-        const api = command.concat(context);
+        // Putting commands and context menus into one array
+        const api = command && context ? command.concat(context) : command ? command : context;
 
+        // Registering the commands and menus
         if (this.testBotID === client.user.id) {
             console.log("Registering commands and menus in the test guild...");
             await client.application.commands.set(api, this.testGuildID);
