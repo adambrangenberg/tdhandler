@@ -21,6 +21,8 @@ module.exports = async (base, dir, client, tdhandler) => {
     const files = readdirSync(join(base, dir)).filter(file => file.endsWith(".js"));
     for (const file of files) {
         const button = require(join(base, dir, file));
+        if (button.ignoreLoading) continue;
+
         let status = "Unloaded";
 
         if (button.button) {

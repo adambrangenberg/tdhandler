@@ -22,13 +22,14 @@ module.exports = async (base, dir, client, own) => {
     const files = readdirSync(join(base, dir)).filter(file => file.endsWith(".js"));
     for (const file of files) {
         const event = require(join(base, dir, file));
+        if (event.ignoreLoading) continue;
+
         let status = "Unloaded";
         let type = "None";
 
         // ignore non events
-        if (own && !event.event) {
-            continue;
-        }
+        if (own && !event.event) continue;
+
         if (event.name) {
             switch (event.once) {
                 case true:

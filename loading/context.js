@@ -25,8 +25,10 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
 
         const files = readdirSync(join(base, dir, folder)).filter(file => file.endsWith(".js"));
         for (const file of files) {
-            let status = "Unloaded";
             const menu = require(join(base, dir, folder, file));
+            if (menu.ignoreLoading) continue;
+
+            let status = "Unloaded";
             if (menu.name && menu.type) {
                 if (menu.development && testBotID === client.id) continue;
                 if (menu.name) {

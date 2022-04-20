@@ -1,7 +1,7 @@
-const { readdirSync, lstatSync } = require("fs");
-const { join } = require("path");
-const { table } = require("table")
-const { tableConfig } = require("../config");
+const {readdirSync, lstatSync} = require("fs");
+const {join} = require("path");
+const {table} = require("table")
+const {tableConfig} = require("../config");
 
 /**
  * @async
@@ -25,21 +25,23 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
 
         const files = readdirSync(join(base, dir, folder)).filter(file => file.endsWith(".js"));
         for (const file of files) {
-            let status = "Unloaded";
             const command = require(join(base, dir, folder, file));
+            if (command.ignoreLoading) continue;
+
+            let status = "Unloaded";
             if (command.name && command.description) {
                 if (command.development && testBotID === client.id) continue;
-                if (command.name) {
-                    client.commands.set(command.name, command);
 
-                    commands.push({
-                        name: command.name,
-                        description: command.description,
-                        options: command.options,
-                    });
+                client.commands.set(command.name, command);
 
-                    status = "Loaded";
-                }
+                commands.push({
+                    name: command.name,
+                    description: command.description,
+                    options: command.options,
+                });
+
+                status = "Loaded";
+
             }
             data.push([file, status, folder]);
         }
@@ -52,7 +54,7 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
         console.log("Registered commands in the test guild")
     } else {
         client.guilds.cache.each(async (guild) => {
-             for (const command of commands) {
+            for (const command of commands) {
                 await client.application.commands.create(command, guild.id);
             }
         });
