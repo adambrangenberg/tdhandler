@@ -47,7 +47,13 @@ module.exports = {
         }
 
         try {
-            button.run(interaction, client, tdhandler, interaction.user, interaction.member);
+            button.run({
+                interaction: interaction,
+                client: client,
+                tdhandler: tdhandler,
+                user: interaction.user,
+                member: interaction.member
+            });
         } catch (error) {
             await tdhandler.log(error, "others");
         }

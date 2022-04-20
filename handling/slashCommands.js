@@ -86,7 +86,13 @@ module.exports = {
         }
 
         try {
-            command.run(interaction, client, tdhandler, interaction.user, interaction.member);
+            command.run({
+                interaction: interaction,
+                client: client,
+                tdhandler: tdhandler,
+                user: interaction.user,
+                member: interaction.member
+            });
         } catch (error) {
             console.error(error)
             await tdhandler.log(error, "others");
