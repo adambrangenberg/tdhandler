@@ -8,10 +8,11 @@ const {tableConfig} = require("../config");
  * @param {String} base
  * @param {String} dir
  * @param {Client} client
+ * @param {Map} commandsMap
  * @param {String} testBotID
  * @param {String} testGuildID
  */
-module.exports = async (base, dir, client, testBotID, testGuildID) => {
+module.exports = async (base, dir, client, commandsMap, testBotID, testGuildID) => {
     console.log("Loading Commands...")
     const data = [
         ["Command", "Status", "Directory"]
@@ -32,7 +33,7 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
             if (command.name && command.description) {
                 if (command.development && testBotID === client.id) continue;
 
-                client.commands.set(command.name, command);
+                commandsMap.set(command.name, command);
 
                 commands.push({
                     name: command.name,

@@ -11,11 +11,12 @@ module.exports = {
      * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
+        const { menus, commands} = tdhandler.loadingVariables;
         let command;
         if (interaction.isContextMenu()) {
-            command = client.menus.get(interaction.commandName);
+            command = menus.get(interaction.commandName);
         } else {
-            command = client.commands.get(interaction.commandName);
+            command = commands.get(interaction.commandName);
         }
 
         if (!command) return false;

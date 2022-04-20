@@ -8,7 +8,10 @@ module.exports = {
      * @return {Boolean} success - If the command was executed successfully
      */
     run: async (interaction, client) => {
-        const button = client.buttons.get(interaction.customId);
+        const { buttons } = tdhandler.loadingVariables;
+        console.log(buttons);
+        console.log(interaction.customId)
+        const button = buttons.get(interaction.customId);
         if (!button) return false;
 
         if (button.clientPermissions) {

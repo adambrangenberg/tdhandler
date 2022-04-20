@@ -8,10 +8,11 @@ const { tableConfig } = require("../config");
  * @param {String} base
  * @param {String} dir
  * @param {Client} client
+ * @param {Map} menusMap
  * @param {String} testBotID
  * @param {String} testGuildID
  */
-module.exports = async (base, dir, client, testBotID, testGuildID) => {
+module.exports = async (base, dir, client, menusMap, testBotID, testGuildID) => {
     console.log("Loading Context menus...")
     const data = [
         ["Command", "Status", "Directory"]
@@ -32,7 +33,7 @@ module.exports = async (base, dir, client, testBotID, testGuildID) => {
             if (menu.name && menu.type) {
                 if (menu.development && testBotID === client.id) continue;
                 if (menu.name) {
-                    client.menus.set(menu.name, menu);
+                    menusMap.set(menu.name, menu);
 
                     menus.push({
                         name: menu.name,

@@ -57,7 +57,7 @@ module.exports = class TDInstance {
         // this.selectorsDir = handling.selectorsDir;
         this.contextDir = handling.contextDir;
 
-        this.logging = options.logging;
+        this.loggingIDs = options.logging;
 
         const embeds = options.embeds;
         this.warningEmbed = embeds.warningEmbed;
@@ -73,21 +73,21 @@ module.exports = class TDInstance {
         global.tdhandler = this;
     }
 
+    // Private variables for loading purposes
+    #commands = new Collection();
+    #menus = new Collection();
+    #buttons = new Collection();
+    #logging = new Collection();
+
     /**
      @async
      @param {Client} client - the Discord Client
      */
     async init(client) {
         this.client = client;
-        this.client.commands = new Collection();
-        this.client.menus = new Collection();
-        this.client.buttons = new Collection();
-        this.client.logging = new Collection();
 
-        this.buttons = new Collection();
-
-        for (const id in this.logging) {
-            this.client.logging.set(id.replace("ID", ""), this.logging[id]);
+        for (const id in this.loggingIDs) {
+            this.#logging.set(id.replace("ID", ""), this.loggingIDs[id]);
         }
 
         // Resetting the command before creating the actual ones
@@ -105,17 +105,29 @@ module.exports = class TDInstance {
 
         // Loading users files
         if (this.eventsDir) await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
-        if (this.commandsDir) await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.testBotID, this.testGuildID);
-        if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.client, this);
-        if (this.contextDir) await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.testBotID, this.testGuildID);
+        if (this.commandsDir) await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.#commands,this.testBotID, this.testGuildID);
+        if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.#buttons);
+        if (this.contextDir) await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.#menus, this.testBotID, this.testGuildID);
 
         console.log("TDHandler is ready!");
     }
 
     /**
+     * @returns {Object} - the loading variables
+     */
+    get loadingVariables() {
+        return {
+            commands: this.#commands,
+            menus: this.#menus,
+            buttons: this.#buttons,
+            logging: this.#logging
+        }
+    }
+
+    /**
      @return {Client} client - the instance client
      */
-    getClient() {
+    get getClient() {
         return this.client;
     }
 
@@ -133,7 +145,7 @@ module.exports = class TDInstance {
      * @param {String} channel
      */
     async log(text, channel) {
-        const foundChannel = await this.getChannel(this.client.logging.get(channel));
+        const foundChannel = await this.getChannel(this.#logging.get(channel));
         if (!foundChannel || !(foundChannel.isThread() || foundChannel.isText())) return false;
         const embed = this.createEmbed("log");
         embed.setDescription(String(text));
@@ -148,7 +160,7 @@ module.exports = class TDInstance {
      * @returns {MessageButton}
      */
     getButton(name) {
-        return this.buttons.get(name);
+        return this.#buttons.get(name)?.button;
     }
 
     // @TODO Create a class for the embeds

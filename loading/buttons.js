@@ -9,10 +9,9 @@ const { MessageButton } = require("discord.js");
  * @async
  * @param {String} base
  * @param {String} dir
- * @param {Client} client
- * @param {TDInstance} tdhandler
+ * @param {Map} buttons
  */
-module.exports = async (base, dir, client, tdhandler) => {
+module.exports = async (base, dir, buttons) => {
     console.log("Loading buttons...")
     const data = [
         ["Button", "Status"]
@@ -26,10 +25,8 @@ module.exports = async (base, dir, client, tdhandler) => {
         let status = "Unloaded";
 
         if (button.button) {
-            const buttonObject = new MessageButton(button.button)
+            buttons.set(button.button.customId, button);
 
-            client.buttons.set(button.button.customId, button);
-            tdhandler.buttons.set(button.button.customId, buttonObject)
             status = "Loaded"
         }
 
