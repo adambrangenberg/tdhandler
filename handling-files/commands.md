@@ -29,7 +29,7 @@ module.exports = {
     ignoreLoading: false,
     
     // The code to run that command
-    run: (interaction, client, tdhandler, user, member) => {
+    run: ({interaction, client, tdhandler, user, member}) => {
         interaction.reply({
             content: "hi commander sir commander",
         })

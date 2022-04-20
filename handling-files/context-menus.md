@@ -27,7 +27,7 @@ module.exports = {
     ignoreLoading: false,
     
     // The code to run that menu
-    run: (interaction, client, tdhandler, user, member) => {
+    run: ({interaction, client, tdhandler, user, member}) => {
         interaction.reply({
             content: "hi this have much context",
         })
