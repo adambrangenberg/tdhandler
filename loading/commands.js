@@ -7,12 +7,10 @@ const {tableConfig} = require("../config");
  * @async
  * @param {String} base
  * @param {String} dir
- * @param {Client} client
  * @param {Map} commandsMap
  * @param {String} testBotID
- * @param {String} testGuildID
  */
-module.exports = async (base, dir, client, commandsMap, testBotID, testGuildID) => {
+module.exports = async (base, dir, commandsMap, testBotID) => {
     console.log("Loading Commands...")
     const data = [
         ["Command", "Status", "Directory"]
@@ -48,20 +46,5 @@ module.exports = async (base, dir, client, commandsMap, testBotID, testGuildID) 
         }
     }
     console.log(`${table(data, tableConfig)}`);
-    const commandString = commands.length > 1 ? "commands" : "command";
-    console.log(`Registering ${commands.length} ${commandString}...`);
-
-    if (testBotID === client.user.id) {
-        for (const command of commands) {
-            await client.application.commands.create(command, testGuildID);
-        }
-        console.log("Registered commands in the test guild\n")
-    } else {
-        client.guilds.cache.each(async (guild) => {
-            for (const command of commands) {
-                await client.application.commands.create(command, guild.id);
-            }
-        });
-        console.log("Registered commands in all guilds\n")
-    }
+    return commands;
 }

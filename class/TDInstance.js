@@ -98,16 +98,35 @@ module.exports = class TDInstance {
                 await client.application.commands.set([], guild.id);
             });
         }
-        console.log("Resetted Application Commands, starting loaders! :)")
 
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
+        let context;
+        let command;
 
         // Loading users files
         if (this.eventsDir) await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
-        if (this.commandsDir) await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.client, this.#commands,this.testBotID, this.testGuildID);
+        if (this.commandsDir) command = await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.#commands, this.testBotID);
         if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.#buttons);
-        if (this.contextDir) await require('../loading/context.js')(this.baseDir, this.contextDir, this.client, this.#menus, this.testBotID, this.testGuildID);
+        if (this.contextDir) context = await require('../loading/context.js')(this.baseDir, this.contextDir, this.#menus, this.testBotID);
+
+        // Registering the commands and menus
+        const api = command.concat(context);
+
+        if (this.testBotID === client.user.id) {
+            console.log("Registering commands and menus in the test guild...");
+            await client.application.commands.set(api, this.testGuildID);
+        } else {
+            if (client.guilds.cache.size < 15) {
+                console.log("Registering commands and menus for all guilds... \n They are going to be visible instantly\n");
+                client.guilds.cache.each(async (guild) => {
+                    await client.application.commands.set(api, guild.id);
+                });
+            } else{
+                console.log("Registering commands and menus for all guilds... \n They are going to be visible after up to an hour\n");
+                await client.application.commands.set(api);
+            }
+        }
 
         console.log("TDHandler is ready!");
     }
