@@ -1,4 +1,4 @@
-const { Collection, MessageEmbed } = require("discord.js");
+const { MessageButton, MessageEmbed } = require("discord.js");
 
 /** Create a new TDInstance. */
 module.exports = class TDInstance {
@@ -74,10 +74,10 @@ module.exports = class TDInstance {
     }
 
     // Private variables for loading purposes
-    #commands = new Collection();
-    #menus = new Collection();
-    #buttons = new Collection();
-    #logging = new Collection();
+    #commands = new Map();
+    #menus = new Map();
+    #buttons = new Map();
+    #logging = new Map();
 
     /**
      @async
@@ -160,7 +160,7 @@ module.exports = class TDInstance {
      * @returns {MessageButton}
      */
     getButton(name) {
-        return this.#buttons.get(name)?.button;
+        return new MessageButton(this.#buttons.get(name)?.button);
     }
 
     // @TODO Create a class for the embeds
