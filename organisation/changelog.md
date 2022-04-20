@@ -11,7 +11,8 @@
 **\[PACKAGE]** Moved loading variables from client to [TDInstance](../classes/tdinstance.md) and made them private\
 **\[PACKAGE]** Using maps instead of collections\
 **\[PACKAGE]** The run property is now an object on [Commands](../handling-files/commands.md), [Context Menus](../handling-files/context-menus.md), [Buttons](../handling-files/buttons.md)\
-**\[PACKAGE]** Changed the order in which the tables are getting logged
+**\[PACKAGE]** Changed the order in which the tables are getting logged\
+**\[PACKAGE]** Changed the way [Commands](../handling-files/commands.md) and [Context Menus](../handling-files/context-menus.md) are being registered
 
 **14 March 2022:**\
 **\[DOCS]** Added File structure explanation to[ Handling Files](broken-reference)\
