@@ -28,19 +28,19 @@ module.exports = async (base, dir, commandsMap, testBotID) => {
             if (command.ignoreLoading) continue;
 
             let status = "Unloaded";
-            if (command.name && command.description) {
+            if (command.name) {
                 if (command.development && testBotID === client.id) continue;
 
                 commandsMap.set(command.name, command);
+                if (command.description) {
+                    commands.push({
+                        name: command.name,
+                        description: command.description,
+                        options: command.options,
+                    });
 
-                commands.push({
-                    name: command.name,
-                    description: command.description,
-                    options: command.options,
-                });
-
-                status = "Loaded";
-
+                    status = "Loaded";
+                }
             }
             data.push([file, status, folder]);
         }
