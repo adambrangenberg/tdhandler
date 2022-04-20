@@ -10,12 +10,12 @@
   * [x] .createEmbed Method
   * [ ] Class for Embeds
 * [ ] Documenting
-  * [ ] Guide
-    * [ ] Documenting file properties
+  * [x] Guide
+    * [x] Documenting file properties
   * [x] JSDoc
   * [ ] TSDoc/Types
-* [ ] Method for Buttons
-* [ ] Collections
-  * [ ] Use Maps instead
-  * [ ] saving them in tdhandler, not client
-  * [ ] make them private variables so they don't disturb
+* [x] Method for Buttons
+* [x] Collections
+  * [x] Use Maps instead
+  * [x] saving them in tdhandler, not client
+  * [x] make them private variables so they don't disturb

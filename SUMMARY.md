@@ -9,12 +9,13 @@
 
 ## Methods
 
-* [✅ init](methods/init.md)
+* [✅ init()](methods/init.md)
 * [🤖 getClient](methods/getclient.md)
-* [🗣 getChannel](methods/getchannel.md)
-* [📑 log](methods/log.md)
-* [📺 createEmbed](methods/createembed.md)
-* [🔘 getButton](methods/getbutton.md)
+* [🗣 getChannel()](methods/getchannel.md)
+* [📑 log()](methods/log.md)
+* [📺 createEmbed()](methods/createembed.md)
+* [🔃 loadingVariables](methods/loadingvariables.md)
+* [🔘 getButton()](methods/getbutton.md)
 
 ## Organisation
 
