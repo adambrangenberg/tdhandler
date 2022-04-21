@@ -111,7 +111,12 @@ module.exports = class TDInstance {
         if (this.contextDir) context = await require('../loading/context.js')(this.baseDir, this.contextDir, this.#menus, this.testBotID);
 
         // Putting commands and context menus into one array
-        const api = command && context ? command.concat(context) : command ? command : context;
+        const api = command && context || content ? command.concat(context) : command ? command : context;
+
+        if (!api) {
+            console.log("TDHandler is ready!");
+            return true;
+        }
 
         // Registering the commands and menus
         if (this.testBotID === client.user.id) {
