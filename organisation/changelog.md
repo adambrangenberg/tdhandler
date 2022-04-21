@@ -1,7 +1,8 @@
 # 📄 Changelog
 
 **21 April 2022:**\
-**\[PACKAGE]** Fixed bug that crashed the bot when not all embed properties were used
+**\[PACKAGE]** Fixed bug that crashed the bot when not all embed properties were used\
+**\[PACKAGE]** Fixed crash if any [Commands](../handling-files/commands.md) or [Context Menus](../handling-files/context-menus.md) were provided
 
 **20 April 2022:**\
 **\[ORGA]** Changed formatting of the Changelog\
