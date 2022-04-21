@@ -205,32 +205,26 @@ module.exports = class TDInstance {
 
         switch(type) {
             case "warning":
-                embed.setColor(this.warningEmbed.color);
-                embed.setTitle(this.warningEmbed.title);
-                embed.setFooter({
+                this.warningEmbed.color ? embed.setColor(this.warningEmbed.color) : null;
+                this.warningEmbed.title ? embed.setTitle(this.warningEmbed.title) : null;
+                this.warningEmbed.footer && this.warningEmbed.footerIcon ? embed.setFooter({
                     text: this.warningEmbed.footer,
                     iconURL: this.warningEmbed.footerIcon
-                });
-                if (this.warningEmbed.timestamp) {
-                    embed.setTimestamp();
-                }
+                }) : null;
+                this.warningEmbed.timestamp ? embed.setTimestamp() : null;
                 break;
             case "logging":
-                embed.setColor(this.loggingEmbed.color);
+                this.loggingEmbed.color ? embed.setColor(this.loggingEmbed.color) : null;
                 embed.setTitle("New Log!");
-                if (this.loggingEmbed.timestamp) {
-                    embed.setTimestamp();
-                }
+                this.loggingEmbed.timestamp ? embed.setTimestamp() : null;
                 break;
             default:
-                embed.setColor(this.defaultEmbed.color);
-                embed.setFooter({
+                this.defaultEmbed.color ? embed.setColor(this.defaultEmbed.color) : null;
+                this.defaultEmbed.footer && this.defaultEmbed.footerIcon ? embed.setFooter({
                     text: this.defaultEmbed.footer,
                     iconURL: this.defaultEmbed.footerIcon
-                });
-                if (this.defaultEmbed.timestamp) {
-                    embed.setTimestamp();
-                }
+                }) : null;
+                this.defaultEmbed.timestamp ? embed.setTimestamp() : null;
                 break;
         }
 
