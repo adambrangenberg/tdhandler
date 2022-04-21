@@ -1,6 +1,9 @@
 # 📄 Changelog
 
-**20 April 2020:**\
+**21 April 2022:**\
+**\[PACKAGE]** Fixed bug that crashed the bot when not all embed properties were used
+
+**20 April 2022:**\
 **\[ORGA]** Changed formatting of the Changelog\
 **\[PACKAGE]** Added ignoreLoading property for [Command](../handling-files/commands.md), [Context Menus](../handling-files/context-menus.md), [Button](../handling-files/buttons.md) and [Events](../handling-files/events.md)\
 **\[DOCS]** Finally documented [.getButton()](../methods/getbutton.md) method 😅\
