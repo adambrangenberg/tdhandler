@@ -23,8 +23,6 @@ new TDInstance({
         contextDir: "./context",
     },
     logging: {
-        // The ID of the channel your events should be logged in
-        eventsID: "0123456789",
         // The ID of the channel your commands should be logged in
         commandsID: "0123456789",
         // The ID of the channel your buttons should be logged in
