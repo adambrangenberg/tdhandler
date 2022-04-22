@@ -19,3 +19,9 @@
   * [x] Use Maps instead
   * [x] saving them in tdhandler, not client
   * [x] make them private variables so they don't disturb
+* [ ] Permissions
+  * [ ] specify Users
+  * [ ] specify Roles
+  * [x] specify normal Permissions
+  * [ ] register normal Permissions through API
+  * [x] handle normal Permissions client-side
