@@ -1,4 +1,6 @@
-const { MessageButton, MessageEmbed } = require("discord.js");
+const {MessageButton, MessageEmbed} = require("discord.js");
+const {existsSync, unlinkSync, writeFileSync} = require("fs")
+const {join} = require("path")
 
 /** Create a new TDInstance. */
 module.exports = class TDInstance {
@@ -104,15 +106,29 @@ module.exports = class TDInstance {
         let context;
         let command;
 
+        // Creating a new Docs file, delete if already existing
+        console.log("Creating Documentation...");
+        const pathToDocs = join(this.baseDir, "Documentation.md");
+
+        if (existsSync(pathToDocs)) {
+            await unlinkSync(pathToDocs);
+            console.log("Deleted old Documentation");
+        }
+        await writeFileSync(pathToDocs, "");
+
         // Loading users files
-        if (this.eventsDir) await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
-        if (this.commandsDir) command = await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.#commands, this.testBotID);
-        if (this.buttonsDir) await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.#buttons);
-        if (this.contextDir) context = await require('../loading/context.js')(this.baseDir, this.contextDir, this.#menus, this.testBotID);
+        if (this.eventsDir) const tableEvents = await require('../loading/events.js')(this.baseDir, this.eventsDir, this.client, false);
+        if (this.commandsDir) let { command, tableCommands } = await require('../loading/commands.js')(this.baseDir, this.commandsDir, this.#commands, this.testBotID);
+        if (this.buttonsDir) const tableButtons = await require('../loading/buttons.js')(this.baseDir, this.buttonsDir, this.#buttons);
+        if (this.contextDir) let { context, tableContext } = await require('../loading/context.js')(this.baseDir, this.contextDir, this.#menus, this.testBotID);
+
+        // Write the Results to Docs
+        // @TODO Finish this
+        let docsContent = `## Documentation of ${client.username}`
 
         // Putting commands and context menus into one array
-        const api = command && context || content ? command.concat(context) : command ? command : context;
-
+        const api = command && context ? command.concat(context) : command ? command : context;
+        console.log(api)
         if (!api) {
             console.log("TDHandler is ready!");
             return true;
@@ -129,7 +145,7 @@ module.exports = class TDInstance {
                 guilds.each(async (guild) => {
                     await client.application.commands.set(api, guild.id);
                 });
-            } else{
+            } else {
                 console.log("Registering commands and menus for all guilds... \n They are going to be visible after up to an hour\n");
                 await client.application.commands.set(api);
             }
@@ -208,7 +224,7 @@ module.exports = class TDInstance {
 
         const embed = new MessageEmbed();
 
-        switch(type) {
+        switch (type) {
             case "warning":
                 this.warningEmbed.color ? embed.setColor(this.warningEmbed.color) : null;
                 this.warningEmbed.title ? embed.setTitle(this.warningEmbed.title) : null;

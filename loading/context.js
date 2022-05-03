@@ -12,7 +12,7 @@ const { tableConfig } = require("../config");
  */
 module.exports = async (base, dir, menusMap, testBotID) => {
     console.log("Loading context menus...")
-    const data = [
+    const tableContext = [
         ["Command", "Status", "Directory"]
     ];
     const menus = [];
@@ -41,10 +41,10 @@ module.exports = async (base, dir, menusMap, testBotID) => {
                     status = "Loaded";
                 }
             }
-            data.push([file, status, folder]);
+            tableContext.push([file, status, folder]);
         }
     }
 
-    console.log(`${table(data, tableConfig)}`);
-    return menus;
+    console.log(`${table(tableContext, tableConfig)}`);
+    return { menus, tableContext };
 }

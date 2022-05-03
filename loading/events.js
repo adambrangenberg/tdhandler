@@ -51,5 +51,6 @@ module.exports = async (base, dir, client, own) => {
 
     if (!own) {
         console.log(table(data, tableConfig));
+        return data;
     }
 }

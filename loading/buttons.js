@@ -34,4 +34,6 @@ module.exports = async (base, dir, buttons) => {
     }
 
     console.log(table(data, tableConfig));
+
+    return data;
 }
