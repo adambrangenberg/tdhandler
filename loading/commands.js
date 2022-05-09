@@ -12,7 +12,7 @@ const {tableConfig} = require("../config");
  */
 module.exports = async (base, dir, commandsMap, testBotID) => {
     console.log("Loading Commands...")
-    const tableCommands = [
+    const data = [
         ["Command", "Status", "Directory"]
     ];
     const commands = [];
@@ -37,15 +37,14 @@ module.exports = async (base, dir, commandsMap, testBotID) => {
                         name: command.name,
                         description: command.description,
                         options: command.options,
-                        type: "CHAT_INPUT"
                     });
 
                     status = "Loaded";
                 }
             }
-            tableCommands.push([file, status, folder]);
+            data.push([file, status, folder]);
         }
     }
-    console.log(`${table(tableCommands, tableConfig)}`);
-    return { commands, tableCommands };
+    console.log(`${table(data, tableConfig)}`);
+    return commands;
 }
