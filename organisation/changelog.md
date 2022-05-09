@@ -1,5 +1,9 @@
 # 📄 Changelog
 
+**9 May 2022:**\
+**\[PACKAGE]** Made the way [Context Menus](../handling-files/context-menus.md) and [Commands](../handling-files/commands.md) are getting registered faster\
+**\[PACKAGE]** Adding an own description, if it's missing for [Commands](../handling-files/commands.md)
+
 **21 April 2022:**\
 **\[PACKAGE]** Fixed bug that crashed the bot when not all embed properties were used\
 **\[PACKAGE]** Fixed crash if any [Commands](../handling-files/commands.md) or [Context Menus](../handling-files/context-menus.md) were provided
