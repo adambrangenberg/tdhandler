@@ -28,7 +28,7 @@ module.exports = async (base, dir, menusMap, testBotID) => {
             if (menu.ignoreLoading) continue;
 
             let status = "Unloaded";
-            if (menu.name && menu.type) {
+            if (menu.type) {
                 if (menu.development && testBotID === client.id) continue;
                 if (menu.name) {
                     menusMap.set(menu.name, menu);
@@ -46,5 +46,5 @@ module.exports = async (base, dir, menusMap, testBotID) => {
     }
 
     console.log(`${table(tableContext, tableConfig)}`);
-    return { menus, tableContext };
+    return menus;
 }

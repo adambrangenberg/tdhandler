@@ -32,15 +32,14 @@ module.exports = async (base, dir, commandsMap, testBotID) => {
                 if (command.development && testBotID === client.id) continue;
 
                 commandsMap.set(command.name, command);
-                if (command.description) {
-                    commands.push({
-                        name: command.name,
-                        description: command.description,
-                        options: command.options,
-                    });
+                commands.push({
+                    name: command.name,
+                    description: command.description || `A ${command.name} command`,
+                    options: command.options,
+                });
 
-                    status = "Loaded";
-                }
+                status = "Loaded";
+
             }
             data.push([file, status, folder]);
         }
