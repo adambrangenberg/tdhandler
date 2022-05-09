@@ -23,5 +23,5 @@
   * [ ] specify Users
   * [ ] specify Roles
   * [x] specify normal Permissions
-  * [ ] register normal Permissions through API
+  * [ ] using Premission v2 from API
   * [x] handle normal Permissions client-side
