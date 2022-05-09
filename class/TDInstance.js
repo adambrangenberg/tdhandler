@@ -1,4 +1,4 @@
-const { MessageButton, MessageEmbed } = require("discord.js");
+const {MessageButton, MessageEmbed} = require("discord.js");
 
 /** Create a new TDInstance. */
 module.exports = class TDInstance {
@@ -90,15 +90,6 @@ module.exports = class TDInstance {
             this.#logging.set(id.replace("ID", ""), this.loggingIDs[id]);
         }
 
-        // Resetting the command before creating the actual ones
-        if (this.testBotID === client.user.id) {
-            await client.application.commands.set([], this.testGuildID);
-        } else {
-            client.guilds.cache.each(async (guild) => {
-                await client.application.commands.set([], guild.id);
-            });
-        }
-
         // Loading own files
         await require('../loading/events.js')(__dirname, '../handling', this.client, true);
         let context;
@@ -123,19 +114,12 @@ module.exports = class TDInstance {
             console.log("Registering commands and menus in the test guild...");
             await client.application.commands.set(api, this.testGuildID);
         } else {
-            if (client.guilds.cache.size < 15) {
-                console.log("Registering commands and menus for all guilds... \n They are going to be visible instantly\n");
-                const guilds = await client.guilds.fetch()
-                guilds.each(async (guild) => {
-                    await client.application.commands.set(api, guild.id);
-                });
-            } else{
-                console.log("Registering commands and menus for all guilds... \n They are going to be visible after up to an hour\n");
-                await client.application.commands.set(api);
-            }
+            console.log("Registering commands and menus for all guilds... \n");
+            await client.application.commands.set(api);
         }
 
-        console.log("TDHandler is ready!");
+        console.log("TDHandler is ready! The commands may take a while to show up...");
+        return true;
     }
 
     /**
@@ -208,7 +192,7 @@ module.exports = class TDInstance {
 
         const embed = new MessageEmbed();
 
-        switch(type) {
+        switch (type) {
             case "warning":
                 this.warningEmbed.color ? embed.setColor(this.warningEmbed.color) : null;
                 this.warningEmbed.title ? embed.setTitle(this.warningEmbed.title) : null;
